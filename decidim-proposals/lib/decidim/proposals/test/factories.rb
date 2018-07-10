@@ -146,6 +146,14 @@ FactoryBot.define do
         }
       end
     end
+
+    trait :with_amendments_enabled do
+      settings do
+        {
+          amendments_enabled: true
+        }
+      end
+    end
   end
 
   factory :proposal, class: "Decidim::Proposals::Proposal" do
