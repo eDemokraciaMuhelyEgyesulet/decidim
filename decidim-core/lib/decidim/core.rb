@@ -64,6 +64,7 @@ module Decidim
   autoload :DataPortabilitySerializers, "decidim/data_portability_serializers"
   autoload :DataPortabilityFileReader, "decidim/data_portability_file_reader"
   autoload :DataPortabilityFileZipper, "decidim/data_portability_file_zipper"
+  autoload :Amendable, "decidim/amendable"
 
   include ActiveSupport::Configurable
 
