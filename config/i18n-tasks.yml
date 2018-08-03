@@ -158,6 +158,9 @@ ignore_unused:
   - decidim.participatory_processes.content_blocks.*.name
   - decidim.assemblies.content_blocks.*.name
   - decidim.initiatives.content_blocks.*.name
+  - decidim.amendments.amendable.error
+  - decidim.amendments.emendation.announcement.*
+  - decidim.amendments.accept.error
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
 # ignore_eq_base:
