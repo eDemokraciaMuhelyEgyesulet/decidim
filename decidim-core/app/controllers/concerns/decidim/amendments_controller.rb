@@ -39,7 +39,22 @@ module Decidim
       end
     end
 
-    def reject; end
+    def reject
+      @form = form(Decidim::Amendable::RejectForm).from_params(params)
+      enforce_permission_to :reject, :amend, amend: @form.amendable
+
+      Decidim::Amendable::Reject.call(@form) do
+        on(:ok) do
+          flash[:notice] = t("rejected.success", scope: "decidim.amendments")
+        end
+
+        on(:invalid) do
+          flash[:alert] = t("rejected.error", scope: "decidim.amendments")
+        end
+
+        redirect_to Decidim::ResourceLocatorPresenter.new(@emendation).path
+      end
+    end
 
     def review; end
 
