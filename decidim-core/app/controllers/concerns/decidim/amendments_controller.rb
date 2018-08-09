@@ -41,9 +41,28 @@ module Decidim
 
     def reject; end
 
-    def review; end
+    def review
+      params = emendation.attributes
+      params[:id] = emendation.amendment.id
+      @form = form(Decidim::Amendable::ReviewForm).from_params(params)
+    end
 
-    def accept; end
+    def accept
+      @form = form(Decidim::Amendable::ReviewForm).from_params(params)
+      enforce_permission_to :accept, :amend, amend: @form.amendable
+
+      Decidim::Amendable::Accept.call(@form) do
+        on(:ok) do
+          flash[:notice] = t("accepted.success", scope: "decidim.amendments")
+        end
+
+        on(:invalid) do
+          flash[:notice] = t("accepted.error", scope: "decidim.amendments")
+        end
+
+        redirect_to Decidim::ResourceLocatorPresenter.new(@emendation).path
+      end
+    end
 
     def amendable_gid
       params[:amendable_gid]
