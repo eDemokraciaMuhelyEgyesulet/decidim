@@ -26,6 +26,7 @@ module Decidim
     attribute :i18n_name_key, String
     attribute :cell_name, String, writer: :private
     attribute :image_names, Array[Symbol]
+    attribute :default, Boolean, default: false
 
     validates :name, :cell_name, :i18n_name_key, presence: true
     validate :image_names_are_unique
@@ -44,10 +45,16 @@ module Decidim
       self.cell_name = cell_name
     end
 
-    # Public: Registers the I18n key this contnt block will use to retrieve its
+    # Public: Registers the I18n key this content block will use to retrieve its
     # public name. Use `#i18n_name_key` to retrieve it.
     def public_name_key(i18n_key)
       self.i18n_name_key = i18n_key
+    end
+
+    # Public: Registers whether this content block should be shown by default
+    # when creating an organization. Use `#default` to retrieve it.
+    def default!
+      self.default = true
     end
 
     def has_settings?
