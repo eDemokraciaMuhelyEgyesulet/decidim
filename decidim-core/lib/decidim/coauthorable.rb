@@ -62,7 +62,7 @@ module Decidim
       # @extra_attrs: Extra
       def add_coauthor(user, extra_attrs = {})
         attrs = { coauthorable: self, author: user }
-        Decidim::Coauthorship.create!(attrs.merge(extra_attrs))
+        Decidim::Coauthorship.create!(attrs.merge(extra_attrs)) unless authored_by?(user)
         Decidim::Follow.create!(followable: self, user: user) unless followers.exists?(user.id)
       end
     end
