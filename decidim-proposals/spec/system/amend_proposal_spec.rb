@@ -69,7 +69,6 @@ describe "Amend Proposal", type: :system do
           login_as user, scope: :user
           visit decidim.new_amend_path(amendable_gid: proposal.to_sgid.to_s)
         end
-
         it "is shown the amend title field" do
           expect(page).to have_css("#amend_title", visible: true)
         end
@@ -95,7 +94,6 @@ describe "Amend Proposal", type: :system do
           end
           click_button "Send emendation"
         end
-
         it "is shown the Success Callout" do
           expect(page).to have_css(".callout.success", text: "The amendment has been created successfully")
         end
