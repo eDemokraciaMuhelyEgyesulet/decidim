@@ -124,7 +124,7 @@ en:
         amended_by: Amended by
         button: Amend %{model_name}
         error: There has been an error amending this resource.
-        help_text: Improve this %{model_name} by modifying its title or description
+        help_text: Improve this %{model_name} by modifying its %{amendable_fields}
         section_heading: Amendments (%{count})
       created:
         error: An error ocurred creating this amendment, try again later
@@ -229,6 +229,7 @@ en:
         name: Dummy Component
         settings:
           global:
+            amendments_enabled: Amendments enabled
             comments_enabled: Comments enabled
             dummy_global_attribute_1: Dummy Attribute 1
             dummy_global_attribute_2: Dummy Attribute 2

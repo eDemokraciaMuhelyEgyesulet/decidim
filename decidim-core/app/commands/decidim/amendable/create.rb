@@ -43,16 +43,16 @@ module Decidim
           form.current_user,
           emendation_attributes
         )
-        @emendation.add_coauthor(form.current_user, user_group: form.user_group)
+
+        @emendation.add_coauthor(form.current_user, user_group: form.user_group) if @emendation.is_a?(Decidim::Coauthorable)
       end
 
       def emendation_attributes
-        {
-          title: form.title,
-          body: form.body,
-          component: form.amendable.component,
-          published_at: Time.current
-        }
+        fields = form[:emendation_fields]
+        fields.merge(published_at: Time.current) if form.emendation_type == "Decidim::Proposals::Proposal"
+        fields.as_json
+        fields[:component] = form.amendable.component
+        fields
       end
 
       def create_amend!
