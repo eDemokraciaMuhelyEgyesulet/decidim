@@ -442,4 +442,15 @@ FactoryBot.define do
     weight { 1 }
     published_at { Time.current }
   end
+
+  factory :amendment, class: "Decidim::Amendment" do
+    amender do
+      build(
+        :user,
+        organization: amendable.try(:organization) || build(:organization)
+      )
+    end
+    amendable { build(:dummy_resource) }
+    emendation { build(:dummy_resource) }
+  end
 end

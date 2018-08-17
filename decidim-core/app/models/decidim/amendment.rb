@@ -14,7 +14,7 @@ module Decidim
       state == "evaluating"
     end
 
-    # validates :amender, uniqueness: { scope: [:amendable] }
+    validates :amendable, :amender, :emendation, presence: true
 
     # def self.export_serializer
     #   Decidim::DataPortabilitySerializers::DataPortabilityAmendSerializer

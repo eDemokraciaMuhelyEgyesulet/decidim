@@ -49,6 +49,7 @@ module Decidim
       include Publicable
       include Decidim::DataPortability
       include Searchable
+      include Amendable
 
       searchable_fields(
         scope_id: { scope: :id },
@@ -103,6 +104,7 @@ Decidim.register_component(:dummy) do |component|
     settings.attribute :resources_permissions_enabled, type: :boolean, default: true
     settings.attribute :dummy_global_attribute_1, type: :boolean
     settings.attribute :dummy_global_attribute_2, type: :boolean
+    settings.attribute :amendments_enabled, type: :boolean, default: true
   end
 
   component.settings(:step) do |settings|
